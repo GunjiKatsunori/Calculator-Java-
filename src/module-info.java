@@ -1,2 +1,3 @@
 module Sample {
+	exports Sample;
 }

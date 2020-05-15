@@ -1,12 +1,16 @@
 package Sample;
 
-class Node<T>{
+public class Node<T>{
 	private T value;
 	private Node<T> left;
 	private Node<T> right;
-	
+
 	public Node(T value){
 		this.value = value;
+	}
+
+	public T getValue() {
+		return this.value;
 	}
 
 	public void setLeft(Node<T> node){
