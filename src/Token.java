@@ -7,8 +7,18 @@ public class Token {
 		this.category = category;
 	}
 
+	public void set(String token, String category) {
+		this.token = token;
+		this.category = category;
+	}
+
 	public void append(char ch) {
-		token += ch;
+		if (token == null) {
+			token = "" + ch;
+		}
+		else {
+			token += ch;
+		}
 	}
 
 	public static String detCategory(char ch) {
@@ -35,5 +45,6 @@ public class Token {
 		else {
 			category = "character";
 		}
+		return category;
 	}
 }

@@ -8,14 +8,14 @@ public class Node {
 		this.token = token;
 	}
 
-	public setToken(Token token) {
+	public void setToken(Token token) {
 		this.token = token;
 	}
 
 	/* positionで指定した位置のノードを変更
 	 * 
 	 */
-	public setNeighbor(Node node, String position) {
+	public void setNeighbor(Node node, String position) {
 		if (position.equals("parent")) {
 			this.parent = node;
 		}
