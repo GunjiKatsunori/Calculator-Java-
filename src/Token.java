@@ -12,6 +12,10 @@ public class Token {
 		this.category = category;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
 	public void append(char ch) {
 		if (token == null) {
 			token = "" + ch;
