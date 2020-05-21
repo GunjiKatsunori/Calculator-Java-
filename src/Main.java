@@ -32,7 +32,8 @@ public static List<Token> tokenize(String formulaStr) {
 			}
 			token.set("", "space");
 			if (ch.category != "space"){ // chが空白でない場合
-				token.set(ch, category);
+				String newToken = "" + ch;
+				token.set(newToken, category);
 			}
 		}
 	}
