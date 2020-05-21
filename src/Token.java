@@ -15,6 +15,9 @@ public class Token {
 	public String getCategory() {
 		return category;
 	}
+	public String get() {
+		return token;
+	}
 
 	public void append(char ch) {
 		if (token == null) {

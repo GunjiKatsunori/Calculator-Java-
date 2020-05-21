@@ -22,13 +22,16 @@ public class Main {
 
 		for (int i = 0; i < formulaStr.length(); i++) {
 			char ch = formulaStr.charAt(i);
+			String tokenVal = token.get();
+			String tokenCategory = token.getCategory();
 			String category = Token.detCategory(ch);
 			if (token.getCategory().equals(category)) { //chがtokenに続く文字の場合
 				token.append(ch);
 			}
 			else {
 				if (!token.getCategory().equals("space")){// tokenが空白でない場合
-					tokenList.add(token);
+					Token completeToken = new Token(tokenVal, tokenCategory);
+					tokenList.add(completeToken);
 				}
 				token.set("", "space");
 				if (!category.equals("space")){ // chが空白でない場合
@@ -37,6 +40,7 @@ public class Main {
 				}
 			}
 		}
+		tokenList.add(token);
 		return tokenList;
 	}
 
