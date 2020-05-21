@@ -45,5 +45,6 @@ public class Token {
 		else {
 			category = "character";
 		}
+		return category;
 	}
 }
