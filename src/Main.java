@@ -39,3 +39,15 @@ public static List<Token> tokenize(String formulaStr) {
 	}
 	return tokenList;
 }
+
+public static List<Node> composeTree(List<Token> tokenList) {
+	List<Node> nodeList    = new ArrayList<Node>();
+	List<Node> nodePointer = new ArrayList<Node>();
+
+	Token token = new Token();
+
+	for (i=0; i<tokenList.size(); i++) {
+
+	}
+	return nodeList;
+}
