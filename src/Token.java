@@ -7,16 +7,16 @@ public class Token {
 		this.category = category;
 	}
 
-	public set(String token, String category) {
+	public void set(String token, String category) {
 		this.token = token;
 		this.category = category;
 	}
 
 	public void append(char ch) {
 		if (token == null) {
-			token = ch;
+			token = "" + ch;
 		}
-		else if(ch != null) {
+		else {
 			token += ch;
 		}
 	}
