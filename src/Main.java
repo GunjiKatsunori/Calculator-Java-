@@ -18,14 +18,23 @@ public class Main {
  * 戻り値：分割された字句のリスト */
 public static List<Token> tokenize(String formulaStr) {
 	List<Token> tokenList = new ArrayList<Token>();
-	Token token = new Token();
+	Token token = new Token("", "space");
+
 	while (int i = 0; i < formulaStr.length(); i++) {
 		ch = formulaStr.charAt(i);
 		category = detCategory(ch);
-		if (token.category.equals(category)) { //chはtokenの続き
+		if (token.category.equals(category)) { //chがtokenに続く文字の場合
 			token.append(ch);
 		}
-		else if ()
+		else {
+			if (token.category != "space"){// tokenが空白でない場合
+				tokenList.add(token)
+			}
+			token.set("", "space");
+			if (ch.category != "space"){ // chが空白でない場合
+				token.set(ch, category);
+			}
+		}
 	}
 	return tokenList;
 }
