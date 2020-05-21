@@ -8,7 +8,12 @@ public class Token {
 	}
 
 	public void append(char ch) {
-		token += ch;
+		if (token == null) {
+			token = ch;
+		}
+		else if(ch != null) {
+			token += ch;
+		}
 	}
 
 	public static String detCategory(char ch) {
