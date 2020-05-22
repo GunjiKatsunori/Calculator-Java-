@@ -2,6 +2,11 @@ public class Token {
 	private String token;
 	private String category;
 
+	public Token() {
+		this.token = "";
+		this.category = "space";
+	}
+
 	public Token(String token, String category) {
 		this.token = token;
 		this.category = category;
@@ -12,11 +17,12 @@ public class Token {
 		this.category = category;
 	}
 
-	public String getCategory() {
-		return category;
-	}
 	public String get() {
 		return token;
+	}
+
+	public String getCategory() {
+		return category;
 	}
 
 	public void append(char ch) {
