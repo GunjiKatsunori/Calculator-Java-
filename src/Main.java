@@ -10,7 +10,9 @@ public class Main {
 			new InputStreamReader(System.in)
 		);
 		String formulaStr = stdin.readLine();
-		tokenize(formulaStr);
+		List<Token> tokenList = tokenize(formulaStr);
+		List<Node> nodeList = composeTree(tokenList);
+		Debuger.show(nodeList);
 	}
 
 	/* 数式をトークンに分解するメソッド
@@ -46,12 +48,12 @@ public class Main {
 
 	public static List<Node> composeTree(List<Token> tokenList) {
 		List<Node> nodeList    = new ArrayList<Node>();
-		List<Node> nodePointer = new ArrayList<Node>();
 
-		Token token = new Token("", "space");
+		Token token = new Token();
 
 		for (int i=0; i<tokenList.size(); i++) {
-
+			token = tokenList.get(i);
+			nodeList = Node.addTree(nodeList, token);
 		}
 		return nodeList;
 	}
