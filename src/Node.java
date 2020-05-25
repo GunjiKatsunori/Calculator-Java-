@@ -114,11 +114,6 @@ public class Node extends Token {
 			nodeList.add(newNode);
 
 			// 親子関係の設定
-			while (!currentNode.isOperator() &&
-				!currentNode.get().equals("(") &&
-				!currentNode.get().equals("")) {
-				currentNode = currentNode.getParent();
-			}
 			newNode.setParent(lastOperator);
 		}
 		return nodeList;
