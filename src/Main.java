@@ -12,7 +12,9 @@ public class Main {
 		String formulaStr = stdin.readLine();
 		List<Token> tokenList = tokenize(formulaStr);
 		List<Node> nodeList = composeTree(tokenList);
-		Debuger.show(nodeList);
+		double result = translateSyntaxTree(nodeList);
+
+		System.out.println(result);
 	}
 
 	/* 数式をトークンに分解するメソッド
@@ -58,4 +60,50 @@ public class Main {
 		return nodeList;
 	}
 
+	public static double translateSyntaxTree(List<Node> nodeList) {
+		List<Node> stack = new ArrayList<Node>();
+		int len = nodeList.size();
+		for (int i=1; i<=len; i++) {
+			Node node = nodeList.get(len-i);
+			if (node.isOperator()) {
+				// stackからのポップ
+				int lenStack = stack.size();
+				Node node1 = stack.get(lenStack-1);
+				stack.remove(lenStack-1);
+				Node node2 = stack.get(lenStack-2);
+				stack.remove(lenStack-2);
+
+				// 演算結果をNodeに変換
+				String result = resolveOperator(node, node1, node2);
+				node = new Node();
+				node.set(result, "digit");
+			}
+			// stackにプッシュ
+			stack.add(node);
+		}
+		if (stack.size() != 1) {
+			System.out.println("error");
+			return 0;
+		}
+		double num = Double.parseDouble( stack.get(0).get() );
+		return num;
+	}
+
+	public static String resolveOperator(Node node, Node node1, Node node2) {
+		String operator = node.get();
+		double num1 = Double.parseDouble(node1.get());
+		double num2 = Double.parseDouble(node2.get());
+		switch (operator) {
+		case "+":
+			return String.valueOf(num1+num2);
+		case "-":
+			return String.valueOf(num1-num2);
+		case "*":
+			return String.valueOf(num1*num2);
+		case "/":
+			return String.valueOf(num1/num2);
+		default:
+			return "";
+		}
+	}
 }
