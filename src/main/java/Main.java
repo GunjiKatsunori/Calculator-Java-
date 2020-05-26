@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+/*
 	public static void main(String[] args) throws IOException {
 		BufferedReader stdin = new BufferedReader(
 			new InputStreamReader(System.in)
@@ -16,7 +17,7 @@ public class Main {
 
 		System.out.println(result);
 	}
-
+*/
 	/* 数式をトークンに分解するメソッド
 	* 引数：in String 入力された数式
 	* 戻り値：分割された字句のリスト */
