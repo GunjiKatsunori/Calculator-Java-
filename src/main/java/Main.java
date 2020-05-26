@@ -1,23 +1,16 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-/*
-	public static void main(String[] args) throws IOException {
-		BufferedReader stdin = new BufferedReader(
-			new InputStreamReader(System.in)
-		);
-		String formulaStr = stdin.readLine();
+
+	public static double calculate(String formulaStr) {
 		List<Token> tokenList = tokenize(formulaStr);
 		List<Node> nodeList = composeTree(tokenList);
 		double result = translateSyntaxTree(nodeList);
 
-		System.out.println(result);
+		return result;
 	}
-*/
+
 	/* 数式をトークンに分解するメソッド
 	* 引数：in String 入力された数式
 	* 戻り値：分割された字句のリスト */
