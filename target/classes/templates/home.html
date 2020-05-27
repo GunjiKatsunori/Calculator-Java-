@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
 <div>
-  計算結果は<span th:text="${result}">
+  <form action="/result" method="get">
+    計算式<br>
+    <input name="formula">
+  </form>
+</div>
+
+<div>
 </div>

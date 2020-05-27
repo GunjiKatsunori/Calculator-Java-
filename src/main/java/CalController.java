@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @EnableAutoConfiguration
 public class CalController {
-	
-	@GetMapping("/home")
+	@GetMapping("/")
 	public String home(ModelMap model) {
-		double result = Main.calculate("3+4*7");
-		model.addAttribute("result", result);
 	    return "home";
+	}
+	
+	@GetMapping("/result")
+	public String result(ModelMap model, @RequestParam("formula") String formula) {
+		double result = Main.calculate(formula);
+		model.addAttribute("formula", formula);
+		model.addAttribute("result", result);
+	    return "result";
 	}
 
 }
