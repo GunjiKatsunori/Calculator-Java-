@@ -1,20 +1,15 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-		BufferedReader stdin = new BufferedReader(
-			new InputStreamReader(System.in)
-		);
-		String formulaStr = stdin.readLine();
-		List<Token> tokenList = tokenize(formulaStr);
-		List<Node> nodeList = composeTree(tokenList);
-		double result = translateSyntaxTree(nodeList);
 
-		System.out.println(result);
+	public static double calculate(String formulaStr) {
+		List<Token> tokenList = tokenize(formulaStr);
+		List<Node> nodeList = Node.composeTree(tokenList);
+		double result = translateSyntaxTree(nodeList);
+		Node.initialize();
+
+		return result;
 	}
 
 	/* 数式をトークンに分解するメソッド
@@ -48,24 +43,20 @@ public class Main {
 		return tokenList;
 	}
 
-	public static List<Node> composeTree(List<Token> tokenList) {
-		List<Node> nodeList    = new ArrayList<Node>();
-
-		Token token = new Token();
-
-		for (int i=0; i<tokenList.size(); i++) {
-			token = tokenList.get(i);
-			nodeList = Node.addTree(nodeList, token);
-		}
-		return nodeList;
-	}
-
 	public static double translateSyntaxTree(List<Node> nodeList) {
 		List<Node> stack = new ArrayList<Node>();
 		int len = nodeList.size();
 		for (int i=1; i<=len; i++) {
 			Node node = nodeList.get(len-i);
-			if (node.isOperator()) {
+			if (node.isOperator() || node.get().equals("(")) {
+				
+				// debug
+				System.out.println("stack");
+				for (int j=0; j<stack.size(); j++) {
+					System.out.print(stack.get(j).get() + "\t");
+				}
+				// debug
+
 				// stackからのポップ
 				int lenStack = stack.size();
 				Node node1 = stack.get(lenStack-1);
@@ -92,7 +83,13 @@ public class Main {
 	public static String resolveOperator(Node node, Node node1, Node node2) {
 		String operator = node.get();
 		double num1 = Double.parseDouble(node1.get());
-		double num2 = Double.parseDouble(node2.get());
+		double num2 = 0;
+		if (!node2.get().equals(")")) {
+			num2 = Double.parseDouble(node2.get());
+		}
+		else {
+
+		}
 		switch (operator) {
 		case "+":
 			return String.valueOf(num1+num2);
@@ -101,7 +98,9 @@ public class Main {
 		case "*":
 			return String.valueOf(num1*num2);
 		case "/":
-			return String.valueOf(num1/num2);
+			return String.valueOf(num1/num1);
+		case "(":
+			return String.valueOf(num1);
 		default:
 			return "";
 		}
