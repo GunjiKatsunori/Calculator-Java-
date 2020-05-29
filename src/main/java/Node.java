@@ -20,8 +20,20 @@ public class Node extends Token {
 		return parent;
 	}
 
-	static Node lastOperator = new Node();
-	static Node currentNode = new Node();
+	private static Node lastOperator = new Node();
+	private static Node currentNode = new Node();
+
+	public static List<Node> composeTree(List<Token> tokenList) {
+		List<Node> nodeList    = new ArrayList<Node>();
+
+		Token token = new Token();
+
+		for (int i=0; i<tokenList.size(); i++) {
+			token = tokenList.get(i);
+			nodeList = Node.addTree(nodeList, token);
+		}
+		return nodeList;
+	}
 
 	public static List<Node> addTree(List<Node> nodeList, Token token) {
 		Node newNode = new Node(token);
@@ -162,5 +174,11 @@ public class Node extends Token {
 			}
 		}
 		return -1;
+	}
+
+	// クラス内グローバル変数初期化
+	public static void initialize() {
+		lastOperator = new Node();
+		currentNode = new Node();
 	}
 }
